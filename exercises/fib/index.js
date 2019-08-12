@@ -7,7 +7,11 @@
 // forms the first ten entries of the fibonacci series.
 // Example:
 //   fib(4) === 3
-const cache = {'0': 0, '1': 1};
+
+//runtime is exponential (O(c^n));
+
+const cache = {'0': 0, '1': 1}; 
+//memoization dramatically improves run speed of func
 const fib = (n) => {
     if(n < 2 ){
         return n;
@@ -16,7 +20,6 @@ const fib = (n) => {
         if(!cache[n] && n >= 2){
             let nth = fib(n - 1) + fib(n - 2);
             cache[n] = nth;
-            console.log(cache);
             return cache[n];
         }
         else {
@@ -41,4 +44,4 @@ module.exports = fib;
 //     fibArr.push(prev + prevprev);
 //}
 
-console.log(fib(55));
+console.log(fib(125));
