@@ -7,19 +7,42 @@
 // chunk([1, 2, 3, 4, 5, 6, 7, 8], 3) --> [[ 1, 2, 3], [4, 5, 6], [7, 8]]
 // chunk([1, 2, 3, 4, 5], 4) --> [[ 1, 2, 3, 4], [5]]
 // chunk([1, 2, 3, 4, 5], 10) --> [[ 1, 2, 3, 4, 5]]
-let newArr = [];
-function chunk(array, size) {
-    if(!array.length){ //base case
-        let pushedArr = newArr;
-        newArr = []; //resets global var to empty arr
-        return pushedArr;
-    }
-    if(array.length){
-        newArr.push(array.splice(0, size));
-        return chunk(array, size);
+
+
+const chunk = (arr, n) => {
+    let i = 0;
+    let chunkedArr = [];
+    let copy = [...arr];
+    while(i < copy.length) {
+        let chunked = arr.splice(0, n);
+        chunkedArr = [...chunkedArr, chunked];
+        i = i + n;
     }
 
+    return chunkedArr;
 }
+
+
+
+module.exports = chunk;
+
+
+
+
+
+// let newArr = [];
+// function chunk(array, size) {
+//     if(!array.length){ //base case
+//         let pushedArr = newArr;
+//         newArr = []; //resets global var to empty arr
+//         return pushedArr;
+//     }
+//     if(array.length){
+//         newArr.push(array.splice(0, size));
+//         return chunk(array, size);
+//     }
+
+// }
 
 /*
 function chunk(array, size) {
