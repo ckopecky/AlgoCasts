@@ -68,7 +68,7 @@ class Tree {
     }
 
     //why do we care about order? 
-    //BF => hierarchy. Top -- most important person
+    //BF => hierarchy. Top -- most important person -- each level is the next seniority level 
 
 
 
