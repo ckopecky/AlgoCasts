@@ -26,7 +26,7 @@ function fromLast(list, n) {
 
     for (let i = 0; i < n; i++) {
         fast = fast.next;
-    }
+    } // ff n times
 
     while(fast.next) {
         fast = fast.next;
