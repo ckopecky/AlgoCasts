@@ -15,7 +15,11 @@ class Queue {
     }
 
     add(item) {
-        this.array.unshift(item);
+        if(item) {
+            this.array = [item, ...this.array];
+            //this.array.unshift(item);
+
+        }
     }
 
     remove() {
@@ -32,7 +36,8 @@ class QueueObject {
 
     add(item) {
         if(item) {
-            this.storage[this.count] = item; //assign item to this.storage[this.count]
+            this.storage[this.count] = item; 
+            //assign item to this.storage[this.count]
             this.count++;
         }
     }
@@ -49,4 +54,4 @@ class QueueObject {
     }
 }
 
-module.exports = QueueObject;
+module.exports = Queue;
