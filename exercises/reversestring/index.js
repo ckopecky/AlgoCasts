@@ -35,14 +35,23 @@
 */ 
 
 //O(n) time complexity (aka linear)
-function reverse(str) {
-    const reverseArray = [];
-    const split = str.split("");
-    for(let i = split.length - 1; i >= 0; i--){
-        reverseArray.push(split[i]);
-    }
-    return reverseArray.join("");
+// function reverse(str) {
+//     const reverseArray = [];
+//     const split = str.split("");
+//     for(let i = split.length - 1; i >= 0; i--){
+//         reverseArray.push(split[i]);
+//     }
+//     return reverseArray.join("");
 
+// }
+
+const reverse = str => {
+    let reverseArray = [];
+    str = str.split('');
+    str.forEach(item => {
+        reverseArray = [item, ...reverseArray, ];
+    })
+    return reverseArray.join('');
 }
 
 module.exports = reverse;
