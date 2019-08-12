@@ -11,52 +11,83 @@
 // All the above questions can use the same technique
     // use an object to keep track of count of chars.
 
+    const maxChar = str => {
+        let cache = {};
 
-function maxChar(str) {
-    let obj = {};
-    let count = 0;
-    //creating map
-    for(let i = 0; i < str.length; i++){
-        count = count + 1;
-        obj[str[i]] = count;
-    }
-
-    let entries = Object.entries(obj);
-    let max = 0;
-    for(let i = 0; i < entries.length; i++){
-        if(entries[i][1] > max){
-            max = entries[i][1]
-            char = entries[i][0];
+        for(let i = 0; i < str.length; i++) {
+            if(!cache[str[i]]) {
+                cache[str[i]] = 1;
+            } else {
+                cache[str[i]] += 1;
+            }
         }
+
+        let max = 0;
+        let char = '';
+        for (key in cache) {
+            console.log(key, ":", cache[key]);
+            if(cache[key] > max) {
+                max = cache[key];
+                char = key;
+            }
+        }
+        return char;
     }
-    return char;
+
+
+
+
+
+
+
+
+    module.exports = maxChar;
+
+
+// function maxChar(str) {
+//     let obj = {};
+//     let count = 0;
+//     //creating map
+//     for(let i = 0; i < str.length; i++){
+//         count = count + 1;
+//         obj[str[i]] = count;
+//     }
+
+//     let entries = Object.entries(obj);
+//     let max = 0;
+//     for(let i = 0; i < entries.length; i++){
+//         if(entries[i][1] > max){
+//             max = entries[i][1]
+//             char = entries[i][0];
+//         }
+//     }
+//     return char;
     
     
-}
+// }
 
-module.exports = maxChar;
 
-/* 
+// /* 
 
-function maxChar(str) {
-    const chars = {};
-    for (let char of str){
-        if(!chars[char]){
-            chars[char] = 1;
-        }  else {
-            chars[char]++;
-        }
-    }
-    let max = 0;
-    for (let char in chars){
-        if(charMap[char] > max) {
-            max = chars[char];
-            char = char;
-        }
-    }
-}
+// function maxChar(str) {
+//     const chars = {};
+//     for (let char of str){
+//         if(!chars[char]){
+//             chars[char] = 1;
+//         }  else {
+//             chars[char]++;
+//         }
+//     }
+//     let max = 0;
+//     for (let char in chars){
+//         if(charMap[char] > max) {
+//             max = chars[char];
+//             char = char;
+//         }
+//     }
+// }
 
-*/
+
 
 console.log(maxChar("abracadabra"));
 console.log(maxChar("Mississippi"));
