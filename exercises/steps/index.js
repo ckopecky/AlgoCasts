@@ -17,25 +17,52 @@
 //       '### '
 //       '####'
 
-function steps(n) {
+const steps = n => {
+    //row
+    for(let i = 0; i < n; i++) {
+        let stair = '';
+        //column -- if row is greater than or equal to column
+        for(let j = 0; j < n; j++) {
+            if(i >= j) {
+                stair += "#";
+            } else {
+                stair += " ";
+            }        
+
+        }
+        console.log(stair);
+
+    }
+}
+
+console.log(steps(2))
+
+
+
+
+
+
+
+
+// function steps(n) {
     //O(n^2) runtime (aka quadratic)
 
     //nested loops
     //row
-    for(let i = 0; i < n; i++) {
-        let stair = ''; //create empty string
-        //columns
-        for(let j = 0; j < n; j++) {
-            //if column # <= row #
-            if(j <= i) {
-                stair += "#";
-            } else {
-                stair += " ";
-            }
-        }
-        console.log(stair)
-    }
-}
+    // for(let i = 0; i < n; i++) {
+    //     let stair = ''; //create empty string
+    //     //columns
+    //     for(let j = 0; j < n; j++) {
+    //         //if column # <= row #
+    //         if(j <= i) {
+    //             stair += "#";
+    //         } else {
+    //             stair += " ";
+    //         }
+    //     }
+    //     console.log(stair)
+    // }
+// }
 
 module.exports = steps;
 
