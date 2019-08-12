@@ -1,5 +1,6 @@
 class Node {
-  constructor(data, next = null) {
+  constructor(data, next = null) { 
+    //null is defaulted to null in the case where someone doesn't pass a next argument into the instantiation of the Node. 
     this.data = data;
     this.next = next;
   }
@@ -12,26 +13,18 @@ class LinkedList {
   }
 
   insertFirst(data) {
-    if (!this.head) {
-      this.head = new Node(data, this.head);
-    } else {
-      this.next = this.head;
-      this.head = new Node(data, this.next);
-    }
+      this.head = new Node(data, this.head); 
+      //the this.head in the next position is the old this.head. 
   }
 
   size() {
+    let counter = 0;
     let node = this.head;
-    if (!this.head) {
-      return 0;
-    } else {
-      let counter = 0;
-      while (node) {
-        counter++;
-        node = node.next;
+      while (node) { //while node exists/truthy value
+        counter += 1;
+        node = node.next;//looks at current node and look at next prop
       }
       return counter;
-    }
   }
 
   getFirst() {
@@ -44,11 +37,10 @@ class LinkedList {
       return null;
     }
     while (node) {
-      if (node.next !== null) {
-        node = node.next;
-      } else {
-        return node;
-      }
+      if (!node.next) {
+          return node;
+      } 
+      node = node.next;
     }
     return node;
   }
@@ -61,48 +53,39 @@ class LinkedList {
   removeFirst() {
     //no head? return null
     if (!this.head) {
-      return;
-    } else {
-      //head exists
-      //does this.next === null ?
-      if (!this.head.next) {
-        //means this.head is first
-        this.head.next = null;
-        this.head = this.head.next;
-        return this.head;
-      } else {
-        this.head = this.head.next;
-        return this.head;
-      }
+      return null;
+    } 
+    //head exists
+    if(this.head.next === null) {
+      this.head = null;
+    }
+
+    else {
+      this.head = this.head.next;
     }
   }
 
   removeLast() {
-    if (!this.head) {
-      //this.head does not exist;
+
+    if(!this.head) {
       return;
+
     }
-    if (this.size() === 1) {
+    if(!this.head.next) {
+      //this means that only 1 node
       this.head = null;
       return;
-    } else {
-      //use helper to get Last node
-      let last = this.getLast();
-      //assign node to this.head
-      let node = this.head;
-      //if no last return null
-      //while node exists...
-      while (node) {
-        if (node.next === last) {
-          node.next = null;
-          return node;
-        }
-
-        if (node.next !== last) {
-          node = node.next;
-        }
-      }
     }
+
+    let prev = this.head;
+    let node = this.head.next;
+
+    while(node.next) { //as long as its truthy. 
+      prev = node;
+      node = node.next;
+    }
+    prev.next = null;
+   
   }
 
   insertLast(data) {
@@ -117,6 +100,11 @@ class LinkedList {
   getAt(int) {
     let counter = 0;
     let node = this.head;
+    if(!this.head) {
+      return null;
+    }
+
+
     while (node) {
       if (int === counter) {
         return node;
@@ -125,28 +113,25 @@ class LinkedList {
         node = node.next;
       }
     }
-    return null;
+    return null; //case in which index is out of bounds;
   }
 
   removeAt(int) {
-    if (this.size() < int || !this.head) {
+    if (!this.head) {
       return;
     }
+
+    if(int === 0) {
+      this.head = this.head.next;
+    } else {
     const prev = this.getAt(int - 1);
     const next = this.getAt(int + 1);
-
-    if (!prev) {
-      let node = this.head;
-      node = null;
-      this.head = next;
-      return this.head;
-    }
 
     if (!prev.next) {
       return this.removeLast();
     }
-    prev.next = next;
-    return prev;
+    prev.next = prev.next.next;
+    }
   }
 
   insertAt(data, int) {
